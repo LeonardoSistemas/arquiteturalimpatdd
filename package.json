@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/LeonardoSistemas/arquiteturalimpatdd/issues"
   },
-  "homepage": "https://github.com/LeonardoSistemas/arquiteturalimpatdd#readme"
+  "homepage": "https://github.com/LeonardoSistemas/arquiteturalimpatdd#readme",
+  "devDependencies": {
+    "standard": "^16.0.3"
+  }
 }
