@@ -10,6 +10,17 @@
     "type": "git",
     "url": "git+https://github.com/LeonardoSistemas/arquiteturalimpatdd.git"
   },
+  "lint-staged": {
+    ".*js": [
+      "standard --fix",
+      "git add"
+    ]
+  },
+  "husky":{
+    "hooks":{
+      "pre-commit":"lint-staged"
+    }
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -17,6 +28,8 @@
   },
   "homepage": "https://github.com/LeonardoSistemas/arquiteturalimpatdd#readme",
   "devDependencies": {
+    "husky": "^5.0.9",
+    "lint-staged": "^10.5.4",
     "standard": "^16.0.3"
   }
 }
