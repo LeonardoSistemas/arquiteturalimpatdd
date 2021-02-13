@@ -9,18 +9,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LeonardoSistemas/arquiteturalimpatdd.git"
-  },
-  "lint-staged": {
-    ".*js": [
-      "standard --fix",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
+  },  
+
   "author": "",
   "license": "ISC",
   "bugs": {
