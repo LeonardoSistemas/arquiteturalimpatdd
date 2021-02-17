@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll",
-    "test:staged": "jest --passWithNoTests"
+    "test": "jest --watch --silent --noStackTrace",
+    "test:staged": "jest --passWithNoTests",
+    "test:ci":"jest --coverage"
   },
   "repository": {
     "type": "git",
