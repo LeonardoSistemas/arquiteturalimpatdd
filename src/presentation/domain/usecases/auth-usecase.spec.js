@@ -42,7 +42,7 @@ describe('Auth UseCase', () =>{
 
         const sut = new AuthUseCase()
         const promisse = sut.auth('any_email@email.com', 'any_password')
-        expect(promisse).rejects.toThrow(new MissingParamError('loadUserByEmailRepository'))
+        expect(promisse).rejects.toThrow()
     })
 
     test('Should throw if no LoadUserByEmailRepository has no load method', async () =>{
