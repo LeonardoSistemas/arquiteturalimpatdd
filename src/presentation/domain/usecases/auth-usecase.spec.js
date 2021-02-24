@@ -75,22 +75,35 @@ const makeLoaduserByEmailRepositoryWithError = () => {
     return new LoadUserByEmailRepositorySpy()
 }
 
+const makeUpdateAccessTokenRepository = () => {
+
+    class UpdateAccessTokenRepositorySpy {
+        async update(userId, accessToken) {
+            this.userId = userId,
+            this.accessToken = accessToken
+        }
+    }
+    return new UpdateAccessTokenRepositorySpy()
+}
 
 const makeSut = () => {
     const encrypterSpy = makeEncrypter()
     const loadUserByEmailRepositorySpy = makeLoaduserByEmailRepository()
     const tokenGeneratorSpy = makeTokenGenerator()
+    const updateAccessTokenRepositorySpy = makeUpdateAccessTokenRepository()
 
     const sut = new AuthUseCase({
         loadUserByEmailRepository: loadUserByEmailRepositorySpy,
         encrypter: encrypterSpy,
-        tokenGenerator: tokenGeneratorSpy
+        tokenGenerator: tokenGeneratorSpy,
+        updateAccessTokenRepository : updateAccessTokenRepositorySpy
     })
     return {
         sut,
         loadUserByEmailRepositorySpy,
         encrypterSpy,
-        tokenGeneratorSpy
+        tokenGeneratorSpy,
+        updateAccessTokenRepositorySpy
     }
 }
 describe('Auth UseCase', () => {
@@ -146,6 +159,13 @@ describe('Auth UseCase', () => {
         expect(accessToken).toBeTruthy()
     })
 
+    test('Should call UpdateAccessTokenRepository with correct values', async () => {
+        const { sut, loadUserByEmailRepositorySpy, updateAccessTokenRepositorySpy, tokenGeneratorSpy } = makeSut()
+        await sut.auth('valid_email@email.com', 'valid_password')
+        expect(updateAccessTokenRepositorySpy.userId).toBe(loadUserByEmailRepositorySpy.user.id)
+        expect(updateAccessTokenRepositorySpy.accessToken).toBe(tokenGeneratorSpy.accessToken)
+    })
+
     test('Should throw if invalid dependencies are provided', async () => {
         const invalid = {}
         const loadUserByEmailRepository = makeLoaduserByEmailRepository()
@@ -178,8 +198,7 @@ describe('Auth UseCase', () => {
             expect(promisse).rejects.toThrow()
         }
 
-    })
-    
+    })    
 
     test('Should throw if dependency throws', async () => {  
         const loadUserByEmailRepository = makeLoaduserByEmailRepository() 
