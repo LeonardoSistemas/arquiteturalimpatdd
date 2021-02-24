@@ -21,8 +21,6 @@ module.exports = class AuthUseCase {
             await this.updateAccessTokenRepository.update(user.id, accessToken)
             return accessToken
         }
-
         return null
-
     }
 }
