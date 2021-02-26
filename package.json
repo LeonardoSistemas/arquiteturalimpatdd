@@ -32,7 +32,8 @@
     "standard": "^16.0.3"
   },
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "bcrypt": "^5.0.0",
+    "jsonwebtoken": "^8.5.1",
     "validator": "^13.5.2"
   }
 }
